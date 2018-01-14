@@ -1,0 +1,356 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/FPGA/SDRAM
+Ebilateral
+Z1 w1153013009
+Z2 DPx3 fmf 10 switch_pkg 0 22 29RDG>Wf8@njz]DPh?H9`2
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+Z5 8D:/FPGA/SDRAM/fmf/switch_pkg.vhd
+Z6 FD:/FPGA/SDRAM/fmf/switch_pkg.vhd
+l0
+L149
+VlP@oOH?UR1k1kkD:Sf8jm3
+!s100 FlSn4QMK=USQFeUF:gMFm1
+Z7 OV;C;10.5b;63
+32
+Z8 !s110 1515243057
+!i10b 1
+Z9 !s108 1515243057.000000
+Z10 !s90 -reportprogress|300|-work|fmf|D:/FPGA/SDRAM/fmf/conversions.vhd|D:/FPGA/SDRAM/fmf/ecl_package.vhd|D:/FPGA/SDRAM/fmf/ecl_utils.vhd|D:/FPGA/SDRAM/fmf/ff_package.vhd|D:/FPGA/SDRAM/fmf/gen_utils.vhd|D:/FPGA/SDRAM/fmf/memory.vhd|D:/FPGA/SDRAM/fmf/state_tab_package.vhd|D:/FPGA/SDRAM/fmf/switch_pkg.vhd|
+Z11 !s107 D:/FPGA/SDRAM/fmf/switch_pkg.vhd|D:/FPGA/SDRAM/fmf/state_tab_package.vhd|D:/FPGA/SDRAM/fmf/memory.vhd|D:/FPGA/SDRAM/fmf/gen_utils.vhd|D:/FPGA/SDRAM/fmf/ff_package.vhd|D:/FPGA/SDRAM/fmf/ecl_utils.vhd|D:/FPGA/SDRAM/fmf/ecl_package.vhd|D:/FPGA/SDRAM/fmf/conversions.vhd|
+!i113 1
+Z12 o-work fmf
+Z13 tExplicit 1 CvgOpt 0
+Amixed
+R2
+R3
+R4
+DEx4 work 9 bilateral 0 22 lP@oOH?UR1k1kkD:Sf8jm3
+l166
+L161
+VAJ[e0NH^MRZ@`CjOcZP]V0
+!s100 hgP^FeaOFg_[jG@_Big7Q3
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Pconversions
+R3
+R4
+Z14 w1211684336
+R0
+Z15 8D:/FPGA/SDRAM/fmf/conversions.vhd
+Z16 FD:/FPGA/SDRAM/fmf/conversions.vhd
+l0
+L64
+V`[;bC@DhgZS@z32CEG4cY3
+!s100 zMX=kAZV`^;=oI1YIG=P<2
+R7
+32
+b1
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Bbody
+DPx4 work 11 conversions 0 22 `[;bC@DhgZS@z32CEG4cY3
+R3
+R4
+Z17 OL;C;10.4a;61
+32
+R8
+l0
+L340
+V1GVKkSV`Ok2ATmINi8EIG1
+!s100 b5:m4UfXY7[ld4jmk=dM23
+R7
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Pecl_package
+Z18 DPx4 ieee 12 vital_timing 0 22 J>EBealN09f8GzldA[z2>3
+Z19 DPx4 ieee 16 vital_primitives 0 22 G>kiXP8Q9dRClKfK1Zn7j1
+R3
+R4
+R1
+R0
+8D:/FPGA/SDRAM/fmf/ecl_package.vhd
+FD:/FPGA/SDRAM/fmf/ecl_package.vhd
+l0
+L20
+V0JlYZnAa4W0[?N>]zClL62
+!s100 ^6jeK:i6R9:=3J_L6VE3F0
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Pecl_utils
+R18
+R19
+R3
+R4
+R1
+R0
+8D:/FPGA/SDRAM/fmf/ecl_utils.vhd
+FD:/FPGA/SDRAM/fmf/ecl_utils.vhd
+l0
+L26
+VIIRbNON52PAjYQ>EzGa8<0
+!s100 5GY<SH[MCCHeM4Rae5ZVD3
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Pff_package
+R18
+R19
+R3
+R4
+w1182966160
+R0
+8D:/FPGA/SDRAM/fmf/ff_package.vhd
+FD:/FPGA/SDRAM/fmf/ff_package.vhd
+l0
+L32
+VM^8TW[X^WMXgMLjPEZbGE1
+!s100 I73Pze9X<0hleU=C7NZGc3
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Pgen_utils
+R18
+R19
+R3
+R4
+R1
+R0
+Z20 8D:/FPGA/SDRAM/fmf/gen_utils.vhd
+Z21 FD:/FPGA/SDRAM/fmf/gen_utils.vhd
+l0
+L26
+V@SDEUgz2aU3]HmJWzm56l1
+!s100 2V6mgfcOSPodGVo1:ZiEE2
+R7
+32
+b1
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Bbody
+DPx4 work 9 gen_utils 0 22 @SDEUgz2aU3]HmJWzm56l1
+R18
+R19
+R3
+R4
+R17
+32
+R8
+l0
+L96
+V0ME`4<W_Tn`4j7Wd:9:L90
+!s100 ^n`^a7?JKCnQAM4jXIiI91
+R7
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Pmemory
+Z22 DPx4 ieee 12 vital_memory 0 22 kaZ<]i`[HA8G2D_^LjE>g0
+R18
+R19
+R3
+R4
+R1
+R0
+Z23 8D:/FPGA/SDRAM/fmf/memory.vhd
+Z24 FD:/FPGA/SDRAM/fmf/memory.vhd
+l0
+L28
+VPPW]]V?JeFDO_45l^P0zE1
+!s100 Bg=A@ePFkMU6ADe7j3Rb<1
+R7
+32
+b1
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Bbody
+DPx4 work 6 memory 0 22 PPW]]V?JeFDO_45l^P0zE1
+R22
+R18
+R19
+R3
+R4
+l0
+L381
+V6klg46khY1;:czWz;WDJQ3
+!s100 IV4:8HVlR:JXC[cg[K6[F1
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Pstate_tab_package
+R18
+R19
+R3
+R4
+R1
+R0
+8D:/FPGA/SDRAM/fmf/state_tab_package.vhd
+FD:/FPGA/SDRAM/fmf/state_tab_package.vhd
+l0
+L20
+V4QFkS;`ekezK[A`4ImK142
+!s100 4AKk=HM?MKi^6Zlibe3cd1
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Pswitch_pkg
+R3
+R4
+R1
+R0
+R5
+R6
+l0
+L25
+V29RDG>Wf8@njz]DPh?H9`2
+!s100 PfnTS<2am:mPP2UQ^cX^D3
+R7
+32
+b1
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Bbody
+DPx4 work 10 switch_pkg 0 22 29RDG>Wf8@njz]DPh?H9`2
+R3
+R4
+l0
+L53
+Vb3KfV6`QYS@V_J?Kfiikn2
+!s100 lnkEhWGnZAH[l><ag<eoG2
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Etri_buf
+R1
+R2
+R3
+R4
+R0
+R5
+R6
+l0
+L126
+VAgNNDgCRhUe3PLm5XQ8Pi2
+!s100 =4^hm>6^O7mn>]RNDe<R;1
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Abehavior
+R2
+R3
+R4
+DEx4 work 7 tri_buf 0 22 AgNNDgCRhUe3PLm5XQ8Pi2
+l134
+L133
+VMXfh=I4z=HzjFoLFmgMU_1
+!s100 <HYAJQ:MnkeaK0Y>4:XD^1
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13

@@ -1,0 +1,2 @@
+1) In the *.mpf file in section [Library] add an entry "fmf = D:/FPGA/SDRAM/fmf"
+2) vcom -work fmf D:/FPGA/SDRAM/fmf/*.vhd
