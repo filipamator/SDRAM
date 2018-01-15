@@ -6,11 +6,11 @@ use STD.textio.all;
 use ieee.std_logic_textio.all;
 
 
-entity SDRAM_tb is
-end SDRAM_tb;
+entity sdram_memctrl_tb is
+end sdram_memctrl_tb;
 
 
-architecture Behavioral of SDRAM_tb is
+architecture Behavioral of sdram_memctrl_tb is
 
 -----------------------------
 -- Components ---------------
@@ -248,35 +248,6 @@ begin
     end process test;
 
 
--- memctrl_i1 : memctrl
--- PORT MAP( 
---   -- clock and reset
---   clk       => clock,
---   rst       => reset, 
---   -- controls
---   W_REQ     => wr_enable,
---   R_REQ     => rd_enable,
---   RW_ACK    => rw_ack,
---   R_VALID   => open,
---   RADDR     => addr,
---   CacheDout => wr_data,
---   SdramDout => open,
---   -- SDRAM
---   MemClk    => SDRAM_CLK,
---   MemCKE    => SDRAM_CKE,
---   MemCS     => SDRAM_CS,
---   MemRAS    => SDRAM_RAS,
---   MemCAS    => SDRAM_CAS,
---   MemWE     => SDRAM_WE,
---   MemBA     => SDRAM_BA,
---   MemAddr   => SDRAM_ADDR,
---   MemUDQM   => SDRAM_DQM(1),
---   MemLDQM   => SDRAM_DQM(0),
---   MemData   => SDRAM_DATA
--- );
-
-
-
 
 sdram_memctrl_i1 : sdram_memctrl
 PORT MAP(   
@@ -305,7 +276,7 @@ PORT MAP(
 
 
 
-mt48lc32m16a2_i1  : mt48lc16m16a2
+mt48lc16m16a2_i1  : mt48lc16m16a2
     PORT MAP (
         BA0     => SDRAM_BA(0),
         BA1     => SDRAM_BA(1),

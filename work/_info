@@ -393,9 +393,9 @@ VdfDBI2d:lfAWiZKB5FFQT0
 !s100 X;REETgGA5P`0SVAcKIE?1
 R8
 32
-Z51 !s110 1515966667
+Z51 !s110 1516050699
 !i10b 1
-Z52 !s108 1515966667.000000
+Z52 !s108 1516050698.000000
 Z53 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/FPGA/SDRAM/mt48lc16m16a2.vhd|
 Z54 !s107 D:/FPGA/SDRAM/mt48lc16m16a2.vhd|
 !i113 1
@@ -442,9 +442,9 @@ R8
 32
 R51
 !i10b 1
-R52
-Z58 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/FPGA/SDRAM/mt48lc32m16a2.vhd|
-Z59 !s107 D:/FPGA/SDRAM/mt48lc32m16a2.vhd|
+Z58 !s108 1516050699.000000
+Z59 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/FPGA/SDRAM/mt48lc32m16a2.vhd|
+Z60 !s107 D:/FPGA/SDRAM/mt48lc32m16a2.vhd|
 !i113 1
 R13
 R14
@@ -464,20 +464,20 @@ R8
 32
 R51
 !i10b 1
-R52
 R58
 R59
+R60
 !i113 1
 R13
 R14
 Epll
-Z60 w1515333795
+Z61 w1515333795
 R34
 R3
 R4
 R5
-Z61 8D:/FPGA/SDRAM/pll.vhd
-Z62 FD:/FPGA/SDRAM/pll.vhd
+Z62 8D:/FPGA/SDRAM/pll.vhd
+Z63 FD:/FPGA/SDRAM/pll.vhd
 l0
 L11
 V=8;TnYjgF0fmGkTC=cmK92
@@ -487,8 +487,8 @@ R8
 R37
 !i10b 1
 R38
-Z63 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/FPGA/SDRAM/pll.vhd|
-Z64 !s107 D:/FPGA/SDRAM/pll.vhd|
+Z64 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/FPGA/SDRAM/pll.vhd|
+Z65 !s107 D:/FPGA/SDRAM/pll.vhd|
 !i113 1
 R13
 R14
@@ -506,8 +506,8 @@ R8
 R37
 !i10b 1
 R38
-R63
 R64
+R65
 !i113 1
 R13
 R14
@@ -533,13 +533,13 @@ R38
 o-work work
 tCvgOpt 0
 Esdram_controller
-Z65 w1515333893
+Z66 w1515333893
 R34
 R3
 R4
 R5
-Z66 8D:/FPGA/SDRAM/SDRAM_Controller.vhd
-Z67 FD:/FPGA/SDRAM/SDRAM_Controller.vhd
+Z67 8D:/FPGA/SDRAM/SDRAM_Controller.vhd
+Z68 FD:/FPGA/SDRAM/SDRAM_Controller.vhd
 l0
 L24
 V><5^AeJ@=eDEUN3e@9OKV0
@@ -549,8 +549,8 @@ R8
 R37
 !i10b 1
 R38
-Z68 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/FPGA/SDRAM/SDRAM_Controller.vhd|
-Z69 !s107 D:/FPGA/SDRAM/SDRAM_Controller.vhd|
+Z69 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/FPGA/SDRAM/SDRAM_Controller.vhd|
+Z70 !s107 D:/FPGA/SDRAM/SDRAM_Controller.vhd|
 !i113 1
 R13
 R14
@@ -568,19 +568,19 @@ R8
 R37
 !i10b 1
 R38
-R68
 R69
+R70
 !i113 1
 R13
 R14
 Esdram_memctrl
-Z70 w1515966662
+Z71 w1515966662
 R34
 R3
 R4
 R5
-Z71 8D:/FPGA/SDRAM/sdram_memctrl.vhd
-Z72 FD:/FPGA/SDRAM/sdram_memctrl.vhd
+Z72 8D:/FPGA/SDRAM/sdram_memctrl.vhd
+Z73 FD:/FPGA/SDRAM/sdram_memctrl.vhd
 l0
 L6
 VYjVgCGhW:0n3QEn5g@]=31
@@ -589,9 +589,9 @@ R8
 32
 R51
 !i10b 1
-R52
-Z73 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/FPGA/SDRAM/sdram_memctrl.vhd|
-Z74 !s107 D:/FPGA/SDRAM/sdram_memctrl.vhd|
+R58
+Z74 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/FPGA/SDRAM/sdram_memctrl.vhd|
+Z75 !s107 D:/FPGA/SDRAM/sdram_memctrl.vhd|
 !i113 1
 R13
 R14
@@ -599,7 +599,7 @@ Artl
 R34
 R3
 R4
-Z75 DEx4 work 13 sdram_memctrl 0 22 YjVgCGhW:0n3QEn5g@]=31
+DEx4 work 13 sdram_memctrl 0 22 YjVgCGhW:0n3QEn5g@]=31
 l72
 L34
 VW^n_C]Gi_Y1K^W1FJlkSQ2
@@ -608,23 +608,68 @@ R8
 32
 R51
 !i10b 1
-R52
-R73
+R58
 R74
+R75
+!i113 1
+R13
+R14
+Esdram_memctrl_tb
+Z76 w1516050683
+Z77 DPx4 ieee 16 std_logic_textio 0 22 V5TSK`;aJKC<l]CEg1>mz1
+R34
+Z78 DPx4 ieee 9 math_real 0 22 Sk6CSihbPL<f[^Shm]=KX0
+R3
+R4
+R5
+Z79 8D:/FPGA/SDRAM/sdram_memctrl_tb.vhd
+Z80 FD:/FPGA/SDRAM/sdram_memctrl_tb.vhd
+l0
+L9
+V^S9]^?Qh=;eM=^UJ7J[ok3
+!s100 e]VYl`:El^8H`La8=9[ad1
+R8
+32
+R51
+!i10b 1
+R58
+Z81 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/FPGA/SDRAM/sdram_memctrl_tb.vhd|
+Z82 !s107 D:/FPGA/SDRAM/sdram_memctrl_tb.vhd|
+!i113 1
+R13
+R14
+Abehavioral
+R77
+R34
+R78
+R3
+R4
+DEx4 work 16 sdram_memctrl_tb 0 22 ^S9]^?Qh=;eM=^UJ7J[ok3
+l195
+L13
+VCR;`0ETPU3VS4fXHP1:NF1
+!s100 bKjAJz?CcddzkMXkA1b;83
+R8
+32
+R51
+!i10b 1
+R58
+R81
+R82
 !i113 1
 R13
 R14
 Esdram_simple
-Z76 w1515249109
-Z77 DPx4 ieee 9 math_real 0 22 Sk6CSihbPL<f[^Shm]=KX0
+Z83 w1515249109
+R78
 R34
-Z78 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
-Z79 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+Z84 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z85 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
 R3
 R4
 R5
-Z80 8D:/FPGA/SDRAM/sdram_simple.vhd
-Z81 FD:/FPGA/SDRAM/sdram_simple.vhd
+Z86 8D:/FPGA/SDRAM/sdram_simple.vhd
+Z87 FD:/FPGA/SDRAM/sdram_simple.vhd
 l0
 L46
 VBDFgdd?09VG1O7XReG``b3
@@ -634,16 +679,16 @@ R8
 R37
 !i10b 1
 R38
-Z82 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|D:/FPGA/SDRAM/sdram_simple.vhd|
-Z83 !s107 D:/FPGA/SDRAM/sdram_simple.vhd|
+Z88 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|D:/FPGA/SDRAM/sdram_simple.vhd|
+Z89 !s107 D:/FPGA/SDRAM/sdram_simple.vhd|
 !i113 1
-Z84 o-work work -2008 -explicit
+Z90 o-work work -2008 -explicit
 R14
 Artl
-R77
-R34
 R78
-R79
+R34
+R84
+R85
 R3
 R4
 DEx4 work 12 sdram_simple 0 22 BDFgdd?09VG1O7XReG``b3
@@ -656,39 +701,39 @@ R8
 R37
 !i10b 1
 R38
-R82
-R83
+R88
+R89
 !i113 1
-R84
+R90
 R14
 Esdram_tb
-Z85 w1515965234
-Z86 DPx4 ieee 16 std_logic_textio 0 22 V5TSK`;aJKC<l]CEg1>mz1
-R34
+Z91 w1515965234
 R77
+R34
+R78
 R3
 R4
 R5
-Z87 8D:/FPGA/SDRAM/SDRAM_tb.vhd
-Z88 FD:/FPGA/SDRAM/SDRAM_tb.vhd
+Z92 8D:/FPGA/SDRAM/SDRAM_tb.vhd
+Z93 FD:/FPGA/SDRAM/SDRAM_tb.vhd
 l0
 L9
 V0Cn_FjOUQTD@``^]0_X7M2
 !s100 AeRm2o^:1Td3NP2=@jWFE1
 R8
 33
-R51
+Z94 !s110 1515966667
 !i10b 1
-R52
-Z89 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|D:/FPGA/SDRAM/SDRAM_tb.vhd|
-Z90 !s107 D:/FPGA/SDRAM/SDRAM_tb.vhd|
+Z95 !s108 1515966667.000000
+Z96 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|D:/FPGA/SDRAM/SDRAM_tb.vhd|
+Z97 !s107 D:/FPGA/SDRAM/SDRAM_tb.vhd|
 !i113 1
-R84
+R90
 R14
 Abehavioral
-R86
-R34
 R77
+R34
+R78
 R3
 R4
 DEx4 work 8 sdram_tb 0 22 0Cn_FjOUQTD@``^]0_X7M2
@@ -698,13 +743,13 @@ VfD@7zf9XV3YNN9agk;B012
 !s100 aiZ^:Jc9PTPM9aCC6jLPJ0
 R8
 33
-R51
+R94
 !i10b 1
-R52
-R89
-R90
+R95
+R96
+R97
 !i113 1
-R84
+R90
 R14
 Pstate_tab_package
 R20

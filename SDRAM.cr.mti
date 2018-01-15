@@ -1,15 +1,4 @@
-SDRAM_tb.vhd {1 {vcom -work work -2008 -explicit -stats=none D:/FPGA/SDRAM/SDRAM_tb.vhd
-Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package MATH_REAL
--- Loading package NUMERIC_STD
--- Loading package std_logic_textio
--- Compiling entity SDRAM_tb
--- Compiling architecture Behavioral of SDRAM_tb
-
-} {} {}} mt48lc32m16a2.vhd {2 {vcom -work work -2002 -explicit -stats=none D:/FPGA/SDRAM/mt48lc32m16a2.vhd
+mt48lc32m16a2.vhd {2 {vcom -work work -2002 -explicit -stats=none D:/FPGA/SDRAM/mt48lc32m16a2.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -22,6 +11,15 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling architecture vhdl_behavioral of mt48lc32m16a2
 ** Warning: D:/FPGA/SDRAM/mt48lc32m16a2.vhd(479): (vcom-1236) Shared variables must be of a protected type.
 ** Warning: D:/FPGA/SDRAM/mt48lc32m16a2.vhd(480): (vcom-1236) Shared variables must be of a protected type.
+
+} {} {}} sdram_memctrl.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/FPGA/SDRAM/sdram_memctrl.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity sdram_memctrl
+-- Compiling architecture rtl of sdram_memctrl
 
 } {} {}} mt48lc16m16a2.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/FPGA/SDRAM/mt48lc16m16a2.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
