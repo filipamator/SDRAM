@@ -1,3 +1,11 @@
+--------------------------------------
+--                                  --
+-- A simple SDRAM memory controller --
+-- Burst lenght = 1, CL=3           --
+--                                  --
+--------------------------------------
+
+
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
 USE ieee.NUMERIC_STD.all;
@@ -5,28 +13,32 @@ USE ieee.NUMERIC_STD.all;
 
 ENTITY sdram_memctrl IS
 PORT(   
-  clock         : IN     std_logic;
-  reset         : IN     std_logic;
+    clock         : IN     std_logic;
+    reset         : IN     std_logic;
 
-  WE            : IN     std_logic;
-  RE            : IN     std_logic;
-  RW_ACK        : OUT    std_logic;
-  R_READY       : OUT    std_logic;
-  ADDR          : IN     std_logic_vector ( 24 DOWNTO 0 );
-  DATA_IN       : IN     std_logic_vector (  15 DOWNTO 0 );
-  DATA_OUT      : OUT    std_logic_vector (  15 DOWNTO 0 );
+    -- host interface
+
+    mem_we            : IN     std_logic;
+    mem_re            : IN     std_logic;
+    mem_rw_ack        : OUT    std_logic;
+    mem_r_ready       : OUT    std_logic;
+    mem_addr          : IN     std_logic_vector(24 DOWNTO 0);
+    mem_data_in       : IN     std_logic_vector(15 DOWNTO 0);
+    mem_data_out      : OUT    std_logic_vector(15 DOWNTO 0);
   
-  SDRAM_CLK     : OUT    std_logic;
-  SDRAM_CKE     : OUT    std_logic;
-  SDRAM_CS      : OUT    std_logic;
-  SDRAM_RAS     : OUT    std_logic;
-  SDRAM_CAS     : OUT    std_logic;
-  SDRAM_WE      : OUT    std_logic;
-  SDRAM_BA      : OUT    std_logic_vector (  1 DOWNTO 0 );
-  SDRAM_ADDR    : OUT    std_logic_vector ( 12 DOWNTO 0 );
-  SDRAM_DQMU    : OUT    std_logic;
-  SDRAM_DQML    : OUT    std_logic;
-  SDRAM_DATA    : INOUT  std_logic_vector ( 15 DOWNTO 0 )
+    -- sdram interface
+
+    SDRAM_CLK     : OUT    std_logic;
+    SDRAM_CKE     : OUT    std_logic;
+    SDRAM_CS      : OUT    std_logic;
+    SDRAM_RAS     : OUT    std_logic;
+    SDRAM_CAS     : OUT    std_logic;
+    SDRAM_WE      : OUT    std_logic;
+    SDRAM_BA      : OUT    std_logic_vector(1 DOWNTO 0);
+    SDRAM_ADDR    : OUT    std_logic_vector(12 DOWNTO 0);
+    SDRAM_DQMU    : OUT    std_logic;
+    SDRAM_DQML    : OUT    std_logic;
+    SDRAM_DATA    : INOUT  std_logic_vector(15 DOWNTO 0)
 );
 END ENTITY sdram_memctrl ;
 
@@ -46,8 +58,8 @@ SIGNAL sdram_cmd : sdram_cmd_t;
 
 
 
-CONSTANT c_ARef_Max     : natural := 765; -- 770
-CONSTANT c_Delay_200us  : natural := 20000;
+CONSTANT c_ARef_Max     : natural := 765;       -- A refresh command is issed every 765 clock cycles (1 clock cycle 10 ns)
+CONSTANT c_Delay_200us  : natural := 20000;     -- Delat at startup
 
 
 SIGNAL s_SDRAM_BA       : std_logic_vector(1 DOWNTO 0);
@@ -55,18 +67,18 @@ SIGNAL s_SDRAM_ADDR     : std_logic_vector(12 DOWNTO 0);
 signal s_SDRAM_DATA     : std_logic_vector(15 DOWNTO 0);
 SIGNAL s_SDRAM_OE       : std_logic;
 
-SIGNAL s_ARef_En        : std_logic;
+SIGNAL s_ARef_En        : std_logic;                            -- auto refresh flag
 
-SIGNAL s_ARef_Counter                 : integer range 0 to c_ARef_Max;
+SIGNAL s_ARef_Counter   : integer range 0 to c_ARef_Max;        -- couter for auto refresh
 SIGNAL s_ARef_Flag          : std_logic := '0';
 SIGNAL s_ARef_Flag_prev     : std_logic := '0';
 
 
-SIGNAL s_counter        : integer := 0;
-SIGNAL s_wait_counter   : integer := 0;
+SIGNAL s_counter        : integer := 0;                         -- general purpose counter
+SIGNAL s_wait_counter   : integer := 0;                         -- wait state couter
 
-SIGNAL s_IsRowAct       : std_logic := '0';
-SIGNAL s_ActAddr        : std_logic_vector(14 DOWNTO 0);
+SIGNAL s_IsRowAct       : std_logic := '0';                     
+SIGNAL s_ActAddr        : std_logic_vector(14 DOWNTO 0);        -- currently opened bank/row
 SIGNAL s_SDRAM_DQM      : std_logic_vector(1 downto 0);
 
 BEGIN
@@ -74,7 +86,7 @@ BEGIN
 
     SDRAM_CLK <= clock;
     SDRAM_CKE <= '1';
-    SDRAM_DATA <= s_SDRAM_DATA WHEN s_SDRAM_OE = '1' ELSE "ZZZZZZZZZZZZZZZZ";  
+    SDRAM_DATA <= s_SDRAM_DATA WHEN s_SDRAM_OE = '1' ELSE "ZZZZZZZZZZZZZZZZ";       -- bi-dir bus
 
 
     PROCESS(reset,clock)
@@ -84,9 +96,9 @@ BEGIN
             s_ARef_En <= '0';
             state <= Wait_200us;
             s_counter <= 0;
-            RW_ACK <= '0';
-            R_READY <= '0';
-            DATA_OUT <= (others => '0');
+            mem_rw_ack <= '0';
+            mem_r_ready <= '0';
+            mem_data_out <= (others => '0');
             s_ARef_Flag <= '0';
             s_ARef_Flag_prev <= '0';
             s_IsRowAct <= '0';
@@ -97,6 +109,7 @@ BEGIN
             s_SDRAM_DQM <= "11";
         ELSIF (clock='1' and clock'event) THEN
 
+            -- auto refresh counter
             IF s_ARef_En = '1' THEN
                 IF (s_Aref_Counter = c_ARef_Max) THEN
                     s_Aref_Counter <= 0;
@@ -106,15 +119,14 @@ BEGIN
                 END IF;
             END IF;
 
-            --  
+            -- default command for SDRAM is NOP
             sdram_cmd <= NOP;
-            R_READY <= '0';
-            RW_ACK <= '0';
+            mem_r_ready <= '0';
+            mem_rw_ack <= '0';
 
             CASE state IS
-
+                -- wait on startup
                 WHEN Wait_200us =>
-
                     IF (s_counter=c_Delay_200us) THEN
                         s_wait_counter <= 0;
                         state <= WaitState;
@@ -123,7 +135,7 @@ BEGIN
                         s_counter <= s_counter + 1;
                         sdram_cmd <= INHIBIT;
                     END IF;
-
+                -- precharge all banks
                 WHEN InitPreCh =>
                     sdram_cmd <= PRECHARGE;
                     s_SDRAM_ADDR(10) <= '1';    -- precharge all banks
@@ -131,21 +143,21 @@ BEGIN
                     s_wait_counter <= 1;
                     state <= WaitState;
                     next_state <= InitARref;
-
+                -- init auto refresh
                 WHEN InitARref =>
                     sdram_cmd <= AUTO_REFRESH;
                     s_counter <= s_counter + 1;
-                    s_wait_counter <= 5;                -- tRFC
+                    s_wait_counter <= 5;                -- tRFC from the datasheet
                     next_state <= InitARref;
                     state <= WaitState;
                     IF (s_counter=1) THEN
-                        s_SDRAM_ADDR <= "0000000110000"; 
+                        s_SDRAM_ADDR <= "0000000110000";        -- mode register for memory, CL=3, burst length=1
                         s_counter <= 0;
                         s_wait_counter <= 5;            -- tRFC
                         state <= WaitState;
                         next_state <= InitLMReg;
                     END IF;
-
+                -- load the register
                 WHEN InitLMReg =>
                     sdram_cmd <= LOAD_MODE_REGISTER;
                     s_Aref_Counter <= 0;
@@ -154,19 +166,19 @@ BEGIN
                     state <= WaitState;
                     next_state <= Idle;
 
-
+                -- refresh command
                 WHEN Refresh =>
                     sdram_cmd <= AUTO_REFRESH;
                     state <= WaitState;
                     s_wait_counter <= 5;                 -- tRFC
                     next_state <= Idle;
-
+                -- read command
                 WHEN Read =>
-                    DATA_OUT <= SDRAM_DATA;
-                    R_READY <= '1';
+                    mem_data_out <= SDRAM_DATA;
+                    mem_r_ready <= '1';
                     state <= Idle;
 
-
+                -- a wait state; number of the cycles stored in s_wait_counter
                 WHEN WaitState =>
                     if (s_wait_counter=0) THEN
                         sdram_cmd <= NOP;
@@ -176,22 +188,25 @@ BEGIN
                         s_wait_counter <= s_wait_counter - 1;
                     END IF;
 
+                -- default state
                 WHEN Idle =>          --- Idle
                     
                     s_SDRAM_DQM <= "11";
                     s_SDRAM_OE <= '0';
 
-                    IF (RE='1' or WE='1') THEN
+                    IF (mem_re='1' or mem_we='1') THEN
+                        -- check if a bank/row is activated
                         IF (s_IsRowAct = '0') THEN
                             sdram_cmd <= ACTIVATE;
-                            s_SDRAM_ADDR <= ADDR( 24 DOWNTO 12 ); -- row
-                            s_SDRAM_BA   <= ADDR( 11 DOWNTO 10 ); -- bank
-                            s_ActAddr    <= ADDR( 24 DOWNTO 10 );
+                            s_SDRAM_ADDR <= mem_addr( 24 DOWNTO 12 ); -- row
+                            s_SDRAM_BA   <= mem_addr( 11 DOWNTO 10 ); -- bank
+                            s_ActAddr    <= mem_addr( 24 DOWNTO 10 );
                             s_IsRowAct <= '1';
                             s_wait_counter <= 1;                    -- tRCD
                             next_state <= Idle;
                             state <= WaitState;
-                        ELSIF (s_ActAddr /= ADDR(24 DOWNTO 10)) THEN
+                        -- check if a proper bank/row
+                        ELSIF (s_ActAddr /= mem_addr(24 DOWNTO 10)) THEN
                             sdram_cmd <= PRECHARGE;
                             s_SDRAM_ADDR(10) <= '0';
                             s_IsRowAct <= '0';
@@ -199,17 +214,17 @@ BEGIN
                             next_state <= idle;
                             state <= WaitState;
 
-                        ELSIF (WE='1') THEN
+                        ELSIF (mem_we='1') THEN
                             s_SDRAM_OE <= '1';
                             sdram_cmd <= WRITE;
-                            s_SDRAM_DATA <= DATA_IN;
-                            s_SDRAM_ADDR <= "000" & ADDR(9 DOWNTO 0);
+                            s_SDRAM_DATA <= mem_data_in;
+                            s_SDRAM_ADDR <= "000" & mem_addr(9 DOWNTO 0);
                             s_SDRAM_DQM <= "00"; 
-                            RW_ACK <= '1';
+                            mem_rw_ack <= '1';
                             state <= Idle;
                         ELSE -- READ
-                            s_SDRAM_ADDR <= "000" & ADDR(9 DOWNTO 0);
-                            RW_ACK <= '1';
+                            s_SDRAM_ADDR <= "000" & mem_addr(9 DOWNTO 0);
+                            mem_rw_ack <= '1';
                             sdram_cmd <= READ;
                             s_SDRAM_DQM <= "00"; 
                             s_wait_counter <= 2;        -- CAS LATENCY = 3 
@@ -241,6 +256,8 @@ BEGIN
         END IF;
     END PROCESS;
 
+
+    -- all signals for memory are registered on falling edge of the clock
 
     PROCESS(clock,reset)
     BEGIN

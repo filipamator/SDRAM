@@ -106,48 +106,19 @@ COMPONENT mt48lc32m16a2 IS
     );
 END COMPONENT mt48lc32m16a2;
 
-COMPONENT memctrl IS
-PORT( 
-  -- clock and reset
-  clk       : IN     std_logic;
-  rst       : IN     std_logic;
-  -- controls
-  W_REQ     : IN     std_logic;
-  R_REQ     : IN     std_logic;
-  RW_ACK    : OUT    std_logic;
-  R_VALID   : OUT    std_logic;
-  RADDR     : IN     std_logic_vector ( 31 DOWNTO 0 );
-  CacheDout : IN     std_logic_vector (  15 DOWNTO 0 );
-  SdramDout : OUT    std_logic_vector (  15 DOWNTO 0 );
-  -- SDRAM
-  MemClk    : OUT    std_logic;
-  MemCKE    : OUT    STD_LOGIC;
-  MemCS     : OUT    STD_LOGIC;
-  MemRAS    : OUT    STD_LOGIC;
-  MemCAS    : OUT    STD_LOGIC;
-  MemWE     : OUT    std_logic;
-  MemBA     : OUT    std_logic_vector (  1 DOWNTO 0 );
-  MemAddr   : OUT    std_logic_vector ( 12 DOWNTO 0 );
-  MemUDQM   : OUT    STD_LOGIC;
-  MemLDQM   : OUT    STD_LOGIC;
-  MemData   : INOUT  std_logic_vector ( 15 DOWNTO 0 )
-);
-END COMPONENT memctrl ;
-
 
 
 COMPONENT sdram_memctrl IS
 PORT(   
   clock         : IN     std_logic;
   reset         : IN     std_logic;
-
-  WE            : IN     std_logic;
-  RE            : IN     std_logic;
-  RW_ACK        : OUT    std_logic;
-  R_READY       : OUT    std_logic;
-  ADDR          : IN     std_logic_vector ( 24 DOWNTO 0 );
-  DATA_IN       : IN     std_logic_vector (  15 DOWNTO 0 );
-  DATA_OUT      : OUT    std_logic_vector (  15 DOWNTO 0 );
+  mem_WE            : IN     std_logic;
+  mem_RE            : IN     std_logic;
+  mem_RW_ACK        : OUT    std_logic;
+  mem_R_READY       : OUT    std_logic;
+  mem_ADDR          : IN     std_logic_vector(24 DOWNTO 0);
+  mem_DATA_IN       : IN     std_logic_vector(15 DOWNTO 0);
+  mem_DATA_OUT      : OUT    std_logic_vector(15 DOWNTO 0);
   
   SDRAM_CLK     : OUT    std_logic;
   SDRAM_CKE     : OUT    std_logic;
@@ -155,11 +126,11 @@ PORT(
   SDRAM_RAS     : OUT    std_logic;
   SDRAM_CAS     : OUT    std_logic;
   SDRAM_WE      : OUT    std_logic;
-  SDRAM_BA      : OUT    std_logic_vector (  1 DOWNTO 0 );
-  SDRAM_ADDR    : OUT    std_logic_vector ( 12 DOWNTO 0 );
+  SDRAM_BA      : OUT    std_logic_vector(1 DOWNTO 0);
+  SDRAM_ADDR    : OUT    std_logic_vector(12 DOWNTO 0);
   SDRAM_DQMU    : OUT    std_logic;
   SDRAM_DQML    : OUT    std_logic;
-  SDRAM_DATA    : INOUT  std_logic_vector ( 15 DOWNTO 0 )
+  SDRAM_DATA    : INOUT  std_logic_vector(15 DOWNTO 0)
 );
 END COMPONENT sdram_memctrl ;
 
@@ -196,7 +167,6 @@ begin
 
 
     clock <= not (clock) after 5 ns;    --clock with time period 20 ns
-    clock180 <= not clock;
 
     reset_n <= not reset;
 
@@ -253,14 +223,13 @@ sdram_memctrl_i1 : sdram_memctrl
 PORT MAP(   
   clock     => clock,
   reset     => reset,
-
-  WE       => wr_enable,
-  RE       => rd_enable,
-  RW_ACK   => rw_ack,
-  R_READY  => open,
-  ADDR     => addr,
-  DATA_IN  => wr_data,
-  DATA_OUT => open,
+  mem_WE       => wr_enable,
+  mem_RE       => rd_enable,
+  mem_RW_ACK   => rw_ack,
+  mem_R_READY  => open,
+  mem_ADDR     => addr,
+  mem_DATA_IN  => wr_data,
+  mem_DATA_OUT => open,
   SDRAM_CLK     => SDRAM_CLK,
   SDRAM_CKE     => SDRAM_CKE,
   SDRAM_CS      => SDRAM_CS,
